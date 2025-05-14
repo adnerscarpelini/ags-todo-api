@@ -12,6 +12,7 @@ A simple To-Do List API built with C# and .NET 8, created as a study project to 
 -   [Project Structure](#project-structure)
 -   [Setup and Running the Project](#setup-and-running-the-project)
 -   [API Endpoints](#api-endpoints)
+-   [Demo](#demo)
 
 ## Project Overview
 
@@ -181,4 +182,11 @@ The API provides the following main functionalities, documented via Swagger:
 
 ---
 
+## Demo
+
+Here's a quick demonstration of the `ags-todo-api` in action, showcasing user registration, login, and task management through the Swagger UI:
+
+![AGS ToDo API in Action](https://github.com/adnerscarpelini/ags-todo-api/blob/master/demo/demo.gif)
+
+---
 *This project was created for study and learning purposes to practice API development with C# .NET.*
