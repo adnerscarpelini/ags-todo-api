@@ -50,7 +50,7 @@
  * =================================================================================================
  */
 
-﻿using ags_todo_api.Models;
+using ags_todo_api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ags_todo_api.Data
@@ -65,5 +65,35 @@ namespace ags_todo_api.Data
 
         // Aqui, estamos dizendo ao EF Core que queremos uma tabela para nossas TaskModels
         public DbSet<TaskModel> Tasks { get; set; }
+        // Aqui, estamos dizendo ao EF Core que queremos uma tabela para nossos Usuários
+        public DbSet<UserModel> Users { get; set; }
+
+
+        //Adner: Configurações de quando criarmos o banco de dados.
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); // Chame o base primeiro
+
+            // Configuração para UserModel
+            modelBuilder.Entity<UserModel>(entity =>
+            {
+                entity.HasKey(u => u.Id); // Define a chave primária
+                entity.Property(u => u.Username).IsRequired();
+                entity.HasIndex(u => u.Username).IsUnique(); //Não pode ter dois username igual
+            });
+
+            // Configuração para TaskModel
+            modelBuilder.Entity<TaskModel>(entity =>
+            {
+                entity.HasKey(t => t.Id); // Define a chave primária
+                entity.Property(t => t.Title).IsRequired();
+
+                // Configura o relacionamento com UserModel
+                entity.HasOne(t => t.User)           // TaskModel tem um User
+                      .WithMany()                    // UserModel (implicitamente) tem muitas Tasks,
+                      .HasForeignKey(t => t.UserId)  // A chave estrangeira em TaskModel é UserId
+                      .IsRequired();                 // Uma tarefa sempre requer um usuário.
+            });
+        }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using ags_todo_api.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ags_todo_api.Data.Repositories
 {
