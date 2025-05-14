@@ -11,11 +11,8 @@ namespace ags_todo_api.Models
         [StringLength(50)]
         public string Username { get; set; } = string.Empty;
 
-        // As senhas NUNCA devem ser armazenadss como string pura!
-        // Então fiz isso para armazenar a senha de forma segura usando um
-        //algoritmo de hashing como o BCrypt.
-        public byte[] PasswordHash { get; set; } = Array.Empty<byte>();
-        public byte[] PasswordSalt { get; set; } = Array.Empty<byte>();
+        [Required]
+        public string PasswordHash { get; set; } = string.Empty;
 
         public UserModel()
         {
